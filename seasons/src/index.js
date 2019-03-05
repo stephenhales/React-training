@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 
 class App extends React.Component {
     // (In the order that they occur)
@@ -19,6 +20,14 @@ class App extends React.Component {
     // Avoid doing anything besides returning JSX
     // React requires a render method
     render() {        
+        return (
+            <div className="border red">
+                {this.renderContent()}
+            </div>
+        );
+    }
+
+    renderContent() {
         if(this.state.errorMessage && !this.state.lat)     {
             return <div>Error: {this.state.errorMessage}</div>            
         }
@@ -27,7 +36,7 @@ class App extends React.Component {
             return <SeasonDisplay lat={this.state.lat} />            
         }
                 
-        return <div>Loading</div>                
+        return <Spinner message="Please accept location request"/>                
     }
 
     // Content is now visible on the screen
